@@ -1,0 +1,25 @@
+name: AXIOM multi-season validation
+on:
+  push:
+    paths:
+      - 'axiom/historical.py'
+      - '.github/workflows/multiseason.yml'
+      - 'requirements.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m axiom.historical
+      - uses: actions/upload-artifact@v4
+        with:
+          name: axiom-multiseason
+          path: reports/multiseason/

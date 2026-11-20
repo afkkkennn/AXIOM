@@ -1,0 +1,39 @@
+name: AXIOM rotation and matched market research
+on:
+  push:
+    paths:
+      - 'axiom/rotation_research.py'
+      - 'axiom/market_matched.py'
+      - '.github/workflows/rotation-market.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rotation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m axiom.rotation_research
+      - uses: actions/upload-artifact@v4
+        with:
+          name: axiom-rotation-research
+          path: reports/rotation_research/
+  market:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m axiom.market_matched
+      - uses: actions/upload-artifact@v4
+        with:
+          name: axiom-matched-market
+          path: reports/market_matched/

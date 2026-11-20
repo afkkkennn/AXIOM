@@ -15,8 +15,11 @@ def test_t90_cutoff():
     assert s is not None and all(x.current_status.iloc[0]=='Questionable' for x in s)
     assert eligible_snapshots(idx,g,g['tipoff']) is None
 def test_long_absence_not_double_counted():
-    days=pd.date_range('2026-10-01',periods=12)
+    days=pd.date_range('2026-10-01',periods=13)
     p=pd.DataFrame([dict(Date=d,Team='BOS',player_id=1,min=30.,pts=20.,ast=4.,reb=5.) for d in days[:3]]+[dict(Date=d,Team='BOS',player_id=2,min=25.,pts=10.,ast=2.,reb=3.) for d in days])
     report=pd.DataFrame([dict(person_id=1,current_status='Out'),dict(person_id=2,current_status='Out')])
     x=side_vector(p,'BOS',pd.Timestamp('2026-10-15'),report,pd.Timestamp('2026-07-01'))
     assert x[0]==-25 and x[3]==1
+    # An absence still present in the last ten games must be prorated.
+    x=side_vector(p[p.Date<days[-1]],'BOS',pd.Timestamp('2026-10-15'),report,pd.Timestamp('2026-07-01'))
+    assert x[0]==-28 and x[3]==2

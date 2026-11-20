@@ -1,0 +1,53 @@
+name: AXIOM live forecasts
+on:
+  push:
+    paths:
+      - 'axiom/live.py'
+      - 'axiom/simulation.py'
+      - '.github/workflows/live.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '10 3,9,15,21 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: axiom-live-ledger
+  cancel-in-progress: false
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Generate independent forecasts
+        run: python -m axiom.live --record
+      - name: Verify final scores
+        if: always()
+        run: |
+          python -m axiom.results_feed
+          cp reports/live/actual_results.csv tracking/actual_results.csv
+          cp reports/live/performance.json tracking/performance.json
+      - name: Persist prospective ledger
+        if: always()
+        run: |
+          git config user.name axiom-research-bot
+          git config user.email axiom-research-bot@users.noreply.github.com
+          git add tracking/predictions.csv tracking/actual_results.csv tracking/performance.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record prospective forecasts and verified results"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: axiom-live-forecast
+          path: |
+            reports/live_forecast/
+            reports/live/

@@ -1,1 +1,13 @@
-{"registered":0,"observed_appearances":0,"pending":0,"by_stat":{}}
+{
+  "registered": 261,
+  "observed_appearances": 0,
+  "not_observed": 0,
+  "pending": 261,
+  "by_stat": {},
+  "note": "Not observed does not establish DNP; team final and published player data required",
+  "player_data_source": {
+    "url": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-data/3183be3bd7c74503cb357f2b9bc777c2d6cadb1c/nba/player_box/parquet/player_box_2027.parquet",
+    "git_blob": "f4e502dc3c69afd22b3e3ce2e33e08eb2d468f83",
+    "sha256": "8704d245e8b4442d6a2246600a4fa04a4cc8ae00cbcc5a92912b4966a161f317"
+  }
+}

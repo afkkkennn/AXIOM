@@ -1,0 +1,1 @@
+forecast_id,created_at_utc,tipoff_at_utc,game_id,model_version,home,away,home_probability,projected_margin,projected_total,data_as_of_utc,notes

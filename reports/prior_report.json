@@ -1,0 +1,31 @@
+{
+  "status": "conversation-reported, not independently reproduced by this package",
+  "alpha_2": {
+    "historical_games_reported": 11777,
+    "evaluation_games_reported": 2469,
+    "accuracy": 0.6841,
+    "brier": 0.2066,
+    "log_loss": 0.6001,
+    "margin_mae": 11.13,
+    "total_mae": 15.23
+  },
+  "alpha_4_pilot": {
+    "dates": "2026-11-02 to 2026-11-18",
+    "training_games": 67,
+    "test_games": 62,
+    "rolling_net": {
+      "accuracy": 0.629032,
+      "brier": 0.246858
+    },
+    "four_factors": {
+      "accuracy": 0.66129,
+      "brier": 0.245549
+    },
+    "player_forecasts": 1243
+  },
+  "warnings": [
+    "Original alpha.2 code and dataset unavailable",
+    "Market comparison from prior chat not independently reproduced; no timestamped archive bundled",
+    "No claim of improvement over alpha.2"
+  ]
+}

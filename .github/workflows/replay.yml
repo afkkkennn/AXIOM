@@ -1,0 +1,24 @@
+name: AXIOM pregame replay
+on:
+  push:
+    paths:
+      - 'axiom/replay.py'
+      - '.github/workflows/replay.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m axiom.replay
+      - uses: actions/upload-artifact@v4
+        with:
+          name: axiom-pregame-replay
+          path: reports/replay/

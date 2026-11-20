@@ -1,0 +1,5 @@
+# Alpha.7
+Alpha.6 calibrated ridge is the champion; challengers are retrospective only until subsequent holdouts.
+Live pipeline uses SportsDataverse current season team boxes at resolved SHA, ESPN upcoming games, strict pregame timestamps and no same-day final scores. Official injuries remain unverified; no high-confidence label. The live ledger records first forecast per game/model, with forecasts made for up to 36 hours ahead, and remains public under current repo visibility. GitHub job runs every six hours; no promise of precise schedules or uninterrupted service. Store final-score verification separately.
+Simulations resample joint margin/total residual pairs, reweight by calibrated winner probability and return empirical quantiles. Player simulations resample joint points/rebounds/assists/3PM residual vectors, conditional on appearance. Coverage assessed on a previously observed season; never interpret as a fresh test.
+Injury/rotation modelling requires contemporaneous availability, projected minutes, replacement impact and roster changes. Do not equate postgame DNP with pregame known absence. 

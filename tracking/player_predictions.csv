@@ -1,0 +1,1 @@
+forecast_id,created_at_utc,tipoff_at_utc,game_id,model_version,player_id,player,team,opponent,expected_minutes,injury_status,data_as_of_utc,Pts_mean,Pts_p10,Pts_p90,REB_mean,REB_p10,REB_p90,AST_mean,AST_p10,AST_p90,3PM_mean,3PM_p10,3PM_p90,PRA_mean,PRA_p10,PRA_p90

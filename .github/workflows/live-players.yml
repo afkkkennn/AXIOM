@@ -1,0 +1,46 @@
+name: AXIOM live player projections
+on:
+  push:
+    paths:
+      - 'axiom/live_players.py'
+      - 'axiom/player_settle.py'
+      - '.github/workflows/live-players.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '30 3,9,15,21 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: axiom-live-ledger
+  cancel-in-progress: false
+jobs:
+  project:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m axiom.live_players
+      - run: python -m axiom.player_settle
+        if: always()
+      - name: Persist player ledger
+        if: always()
+        run: |
+          git config user.name axiom-research-bot
+          git config user.email axiom-research-bot@users.noreply.github.com
+          git add tracking/player_predictions.csv tracking/player_performance.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record prospective player projections"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: axiom-player-forecasts
+          path: reports/live_players/

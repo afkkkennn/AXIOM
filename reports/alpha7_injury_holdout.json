@@ -1,0 +1,133 @@
+{
+  "matched_team_baseline": {
+    "n": 1145,
+    "accuracy": 0.6855895196506551,
+    "brier": 0.20518027839468728,
+    "log_loss": 0.596907920140096,
+    "margin_mae": 11.325506990603754,
+    "coefficients": {
+      "net": 0.3608036768464762,
+      "efg": 0.22412819934870215,
+      "turnovers": 0.4368437072106263,
+      "oreb": 0.14731349760994425,
+      "ftr": 0.11336422949978321,
+      "elo": 1.9478794921800033,
+      "rest": 0.07908888614234112,
+      "b2b": -2.147047186553561
+    }
+  },
+  "injury_augmented": {
+    "n": 1145,
+    "accuracy": 0.6917030567685589,
+    "brier": 0.20256637587432164,
+    "log_loss": 0.5897276272067284,
+    "margin_mae": 11.159077348503567,
+    "coefficients": {
+      "net": 0.33105560589871463,
+      "efg": 0.21322265568163523,
+      "turnovers": 0.40959443785418476,
+      "oreb": 0.1181617862089854,
+      "ftr": 0.12236244221511751,
+      "elo": 2.1264742116116198,
+      "rest": 0.039400388192559165,
+      "b2b": -1.653174246265269,
+      "injury_minutes": -0.05995315369606695,
+      "injury_points": -0.5748752727052224,
+      "injury_quality": 0.6298995730434176,
+      "injury_rows": -0.14549252260884765
+    }
+  },
+  "delta_log_loss_ci95": [
+    -0.014842152668590203,
+    0.0005818356169311626
+  ],
+  "split": {
+    "train": 5303,
+    "calibration": 1145,
+    "test": 1145
+  },
+  "coverage_by_season": {
+    "2020": {
+      "all_games": 1059,
+      "matched_games": 945,
+      "listed_players": 9102,
+      "matched_prior_players": 4826
+    },
+    "2021": {
+      "all_games": 1080,
+      "matched_games": 954,
+      "listed_players": 8070,
+      "matched_prior_players": 5159
+    },
+    "2022": {
+      "all_games": 1230,
+      "matched_games": 1139,
+      "listed_players": 11679,
+      "matched_prior_players": 7023
+    },
+    "2023": {
+      "all_games": 1230,
+      "matched_games": 1140,
+      "listed_players": 10864,
+      "matched_prior_players": 6677
+    },
+    "2024": {
+      "all_games": 1231,
+      "matched_games": 1125,
+      "listed_players": 12088,
+      "matched_prior_players": 7198
+    },
+    "2025": {
+      "all_games": 1231,
+      "matched_games": 1145,
+      "listed_players": 13185,
+      "matched_prior_players": 8079
+    },
+    "2026": {
+      "all_games": 1230,
+      "matched_games": 1145,
+      "listed_players": 13049,
+      "matched_prior_players": 7917
+    }
+  },
+  "listed_status_observed_appearance_2026": {
+    "out": {
+      "n": 9747,
+      "appeared": 3,
+      "rate": 0.0003077870113881194
+    },
+    "questionable": {
+      "n": 1286,
+      "appeared": 692,
+      "rate": 0.5381026438569206
+    },
+    "available": {
+      "n": 1239,
+      "appeared": 1021,
+      "rate": 0.8240516545601292
+    },
+    "probable": {
+      "n": 518,
+      "appeared": 482,
+      "rate": 0.9305019305019305
+    },
+    "doubtful": {
+      "n": 259,
+      "appeared": 1,
+      "rate": 0.003861003861003861
+    }
+  },
+  "limitations": [
+    "Reported times from archive interpreted in US Eastern; 90-minute cutoff",
+    "Require both team snapshots and prior history; matched subset only",
+    "Archive can omit unlisted/clear teams; no inferred healthy status",
+    "Identity matches and reconstructed historical source, not record of when AXIOM retrieved it",
+    "Fixed status probabilities; quality proxy not causal replacement impact",
+    "2025-26 retrospective, not untouched new test"
+  ],
+  "provenance": {
+    "workflow": "https://github.com/afkkkennn/AXIOM/actions/runs/44684274852",
+    "job_id": 136114765681,
+    "commit": "d599e4a37545a4f738fdf7f552a484c18e656c99"
+  }
+}

@@ -1,0 +1,43 @@
+name: AXIOM injury shadow forecasts
+on:
+  push:
+    paths:
+      - 'axiom/injury_shadow.py'
+      - '.github/workflows/injury-shadow.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '25 0-6,20-23 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: axiom-live-ledger
+  cancel-in-progress: false
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m axiom.injury_shadow
+      - name: Preserve paired prospective forecasts
+        if: success()
+        run: |
+          git config user.name axiom-research-bot
+          git config user.email axiom-research-bot@users.noreply.github.com
+          git add tracking/predictions.csv
+          if ! git diff --cached --quiet; then
+            git commit -m "Record paired prospective injury forecasts"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: axiom-injury-shadow-report
+          path: reports/injury_shadow/

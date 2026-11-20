@@ -1,5 +1,9 @@
 {
   "settled_forecasts": 0,
-  "unsettled_forecasts": 9,
-  "by_model": {}
+  "unsettled_forecasts": 15,
+  "by_model": {},
+  "paired_injury_comparison": {
+    "matched_games": 0,
+    "status": "awaiting paired actual results"
+  }
 }

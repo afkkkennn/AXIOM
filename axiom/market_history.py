@@ -37,7 +37,7 @@ def compute(df):
     if min(len(train),len(cal),len(te))<500:raise ValueError('Insufficient market evaluation sample')
     m=LogisticRegression(max_iter=1000).fit(train[cols],train.y)
     p=m.predict_proba(cal[cols])[:,1];c=LogisticRegression().fit(logit(np.clip(p,1e-6,1-1e-6)).reshape(-1,1),cal.y)
-    te['raw']=m.predict_proba(te[cols])[:,1];te['calibrated']=c.predict_proba(logit(np.clip(te.raw,1e-6,1-1e-6)).reshape(-1,1))[:,1]
+    te['raw']=m.predict_proba(te[cols])[:,1];te['calibrated']=c.predict_proba(logit(np.clip(te.raw.to_numpy(),1e-6,1-1e-6)).reshape(-1,1))[:,1]
     def metrics(p):return dict(n=len(te),accuracy=float(((p>=.5)==te.y).mean()),brier=float(brier_score_loss(te.y,p)),log_loss=float(log_loss(te.y,p,labels=[0,1])))
     return {'train':len(train),'calibration':len(cal),'matched_test':len(te),'independent_raw':metrics(te.raw),'independent_calibrated':metrics(te.calibrated),'archived_market':metrics(te.market),'limitations':['Source market probabilities not independently reconstructed from both sides','Unverified quote observation times','Source game coverage may omit games','Not Bet88 odds','Scores-only comparator is distinct from alpha.6 box-score ensemble']},te
 def main():

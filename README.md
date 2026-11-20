@@ -32,3 +32,6 @@ Pinned source: https://github.com/jameslyman7/NBA/tree/20ecc62ad43b9f48fa63fc546
 
 ## Alpha.6 multi-season experiment
 The pinned SportsDataverse ESPN box score files cover season ending years 2020–2026. Run `python -m axiom.historical`. Train on 2020–24, fit calibration only on 2025, evaluate 2026. Specifications fixed before first run. Compare net rating, Four Factors, Elo/rest and ensemble; player average, rate and opponent-adjusted rate. Artifacts include source hashes and individual forecasts. This is experimental until workflow results are inspected. Preserve the consumed 2026 holdout and validate any subsequent tuning on a new prospective period. Player forecasts are conditional on actual appearances, not an availability model.
+
+### Verified alpha.6 benchmark
+[Full metrics](reports/alpha6_holdout.json) from [successful workflow](https://github.com/afkkkennn/AXIOM/actions/runs/44682920282): 8,291 games, 1,230 holdout, calibrated ensemble accuracy 68.54%, Brier 0.20543, log loss 0.59738. Opponent-adjusted player model tested on 26,050 appearances. Results are not a head-to-head comparison with the missing alpha.2 model. Candidate for prospective tracking, not a proven market edge. Historical odds analysis and point-in-time injury validation remain separate. See reports/validation_plan.md for promotion gates.

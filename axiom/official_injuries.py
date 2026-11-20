@@ -28,16 +28,22 @@ ARCHIVE={
 2027:('388f45aa703bf9da3b4651d411fe066cc6f84540','23a1501a27c2657550235e96886265ba6669b2e5')}
 STATUS={'out':0.,'doubtful':.15,'questionable':.5,'probable':.85,'available':1.}
 EXTRA=['injury_minutes','injury_points','injury_quality','injury_rows']
+from functools import lru_cache
+@lru_cache(maxsize=4)
+def tree_hashes(ref):
+    api=f'https://api.github.com/repos/{REPO}'
+    tree=get(api+f'/git/trees/{ref}',params={'recursive':'1'}).json()
+    if tree.get('truncated'):raise ValueError('Archive tree truncated; cannot verify files')
+    return {x['path']:x['sha'] for x in tree['tree'] if x['type']=='blob'}
 def source(y,kind,manifest,dynamic=False):
-    ref=REF;expected=ARCHIVE[y][kind=='player_game_logs']
-    path=f'nba_stats/{kind}/parquet/{kind}_{y}.parquet'
+    ref=REF
     if dynamic:
-        api=f'https://api.github.com/repos/{REPO}'
-        ref=get(api+'/git/ref/heads/main').json()['object']['sha']
-        tree=get(api+f'/git/trees/{ref}',params={'recursive':'1'}).json()['tree']
-        expected=next(x['sha'] for x in tree if x['path']==path)
+        ref=get(f'https://api.github.com/repos/{REPO}/git/ref/heads/main').json()['object']['sha']
+    path=f'nba_stats/{kind}/parquet/{kind}_{y}.parquet'
+    expected=tree_hashes(ref)[path]
     url=f'https://raw.githubusercontent.com/{REPO}/{ref}/{path}';raw=get(url).content
-    if git_blob_sha(raw)!=expected:raise ValueError('Official archive hash mismatch')
+    actual=git_blob_sha(raw)
+    if actual!=expected:raise ValueError(f'Archive hash mismatch at {path}: expected {expected}, got {actual}')
     manifest.append(dict(url=url,git_blob=expected,sha256=hashlib.sha256(raw).hexdigest(),retrieved_at_utc=dt.datetime.now(UTC).isoformat()))
     return pd.read_parquet(io.BytesIO(raw))
 def eastern(x):
@@ -126,7 +132,7 @@ def current_snapshot(out):
             if s is None:skipped.append({'game_id':g['game_id'],'team':team,'reason':'No eligible submitted archive snapshot'});continue
             for r in s.itertuples():
                 rows.append(dict(game_id=g['game_id'],team=team,tipoff_at_utc=g['tipoff'].isoformat(),report_time_utc=r.report.isoformat(),player=str(r.report_player_name),status=str(r.current_status),reason=str(r.reason)))
-    m={'retrieved_at_utc':now.isoformat(),'source_manifest':manifest,'rows':len(rows),'unavailable_team_snapshots':skipped,'warning':'An archive may lag the current official report; unlisted players are not automatically confirmed active'}
+    m={'retrieved_at_utc':now.isoformat(),'source_manifest':manifest,'archive_rows':len(raw),'archive_latest_report':str(eastern(raw.report_datetime).max()),'archive_latest_game_date':str(pd.to_datetime(raw.game_date).max()),'rows':len(rows),'unavailable_team_snapshots':skipped,'warning':'An archive may lag the current official report; unlisted players are not automatically confirmed active'}
     out.mkdir(parents=True,exist_ok=True);(out/'current_report.json').write_text(json.dumps(m,indent=2));pd.DataFrame(rows).to_csv(out/'current_report_rows.csv',index=False);print(json.dumps(m,indent=2))
 def main():
     import argparse

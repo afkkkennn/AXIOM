@@ -1,0 +1,244 @@
+{
+  "folds": {
+    "2023": {
+      "champion": {
+        "n": 1230,
+        "accuracy": 0.6260162601626016,
+        "brier": 0.22912580800525736,
+        "log_loss": 0.6501910544894256,
+        "delta_log_loss_ci95_vs_champion": [
+          0,
+          0
+        ]
+      },
+      "logistic": {
+        "n": 1230,
+        "accuracy": 0.6284552845528455,
+        "brier": 0.2290251852913963,
+        "log_loss": 0.6499907052412178,
+        "delta_log_loss_ci95_vs_champion": [
+          -0.0017138730427706493,
+          0.0013467716475432736
+        ]
+      },
+      "hist_gradient": {
+        "n": 1230,
+        "accuracy": 0.6300813008130082,
+        "brier": 0.23291459418271773,
+        "log_loss": 0.6588779124161839,
+        "delta_log_loss_ci95_vs_champion": [
+          0.0018350067386907114,
+          0.015493529334157081
+        ]
+      },
+      "random_forest": {
+        "n": 1230,
+        "accuracy": 0.6317073170731707,
+        "brier": 0.23067292105702517,
+        "log_loss": 0.6537756623917,
+        "delta_log_loss_ci95_vs_champion": [
+          -0.002508254996413717,
+          0.009491413034132899
+        ]
+      },
+      "fixed_blend": {
+        "n": 1230,
+        "accuracy": 0.6268292682926829,
+        "brier": 0.22903447908105262,
+        "log_loss": 0.6499990758611961,
+        "delta_log_loss_ci95_vs_champion": [
+          -0.0009433340613808737,
+          0.0005835538365470727
+        ]
+      }
+    },
+    "2024": {
+      "champion": {
+        "n": 1231,
+        "accuracy": 0.6490658001624695,
+        "brier": 0.21399156484052845,
+        "log_loss": 0.6162925308820747,
+        "delta_log_loss_ci95_vs_champion": [
+          0,
+          0
+        ]
+      },
+      "logistic": {
+        "n": 1231,
+        "accuracy": 0.6506904955320877,
+        "brier": 0.21323566881863937,
+        "log_loss": 0.6145239713773236,
+        "delta_log_loss_ci95_vs_champion": [
+          -0.003478808625255573,
+          -0.00014109104420183456
+        ]
+      },
+      "hist_gradient": {
+        "n": 1231,
+        "accuracy": 0.6425670186839968,
+        "brier": 0.21887221050087735,
+        "log_loss": 0.6275269319672154,
+        "delta_log_loss_ci95_vs_champion": [
+          0.005317012856546161,
+          0.01751090777640379
+        ]
+      },
+      "random_forest": {
+        "n": 1231,
+        "accuracy": 0.6425670186839968,
+        "brier": 0.217719739578081,
+        "log_loss": 0.6244828088864377,
+        "delta_log_loss_ci95_vs_champion": [
+          0.0026041841800147464,
+          0.013638751797171885
+        ]
+      },
+      "fixed_blend": {
+        "n": 1231,
+        "accuracy": 0.6482534524776604,
+        "brier": 0.21355579239466063,
+        "log_loss": 0.6152851502319667,
+        "delta_log_loss_ci95_vs_champion": [
+          -0.0018667376634001205,
+          -0.00019438756022883898
+        ]
+      }
+    },
+    "2025": {
+      "champion": {
+        "n": 1231,
+        "accuracy": 0.6685621445978879,
+        "brier": 0.20835237947057353,
+        "log_loss": 0.602936829795272,
+        "delta_log_loss_ci95_vs_champion": [
+          0,
+          0
+        ]
+      },
+      "logistic": {
+        "n": 1231,
+        "accuracy": 0.6636880584890333,
+        "brier": 0.2085774536747602,
+        "log_loss": 0.6034948263809187,
+        "delta_log_loss_ci95_vs_champion": [
+          -0.0012508148775680797,
+          0.0023377925797553344
+        ]
+      },
+      "hist_gradient": {
+        "n": 1231,
+        "accuracy": 0.6620633631194152,
+        "brier": 0.21034505722764757,
+        "log_loss": 0.6085701898544109,
+        "delta_log_loss_ci95_vs_champion": [
+          0.00003353519016061421,
+          0.011418775505314187
+        ]
+      },
+      "random_forest": {
+        "n": 1231,
+        "accuracy": 0.6604386677497969,
+        "brier": 0.21140928381733626,
+        "log_loss": 0.61079822719505,
+        "delta_log_loss_ci95_vs_champion": [
+          0.0024418142821173664,
+          0.013388900125321077
+        ]
+      },
+      "fixed_blend": {
+        "n": 1231,
+        "accuracy": 0.6661251015434606,
+        "brier": 0.20840935483129933,
+        "log_loss": 0.6030930165551406,
+        "delta_log_loss_ci95_vs_champion": [
+          -0.0007537804651151196,
+          0.0010449323742022754
+        ]
+      }
+    },
+    "2026": {
+      "champion": {
+        "n": 1230,
+        "accuracy": 0.6853658536585366,
+        "brier": 0.20542559993880385,
+        "log_loss": 0.5973796613823582,
+        "delta_log_loss_ci95_vs_champion": [
+          0,
+          0
+        ]
+      },
+      "logistic": {
+        "n": 1230,
+        "accuracy": 0.6853658536585366,
+        "brier": 0.2058452753871007,
+        "log_loss": 0.5984813580313287,
+        "delta_log_loss_ci95_vs_champion": [
+          -0.0008049189476301412,
+          0.002959517015624196
+        ]
+      },
+      "hist_gradient": {
+        "n": 1230,
+        "accuracy": 0.6723577235772358,
+        "brier": 0.20903572316055646,
+        "log_loss": 0.6064573020851354,
+        "delta_log_loss_ci95_vs_champion": [
+          0.0033172897380937833,
+          0.014779366649690429
+        ]
+      },
+      "random_forest": {
+        "n": 1230,
+        "accuracy": 0.6715447154471544,
+        "brier": 0.2084382180118389,
+        "log_loss": 0.6058261192563176,
+        "delta_log_loss_ci95_vs_champion": [
+          0.002715208299949477,
+          0.01391077480524657
+        ]
+      },
+      "fixed_blend": {
+        "n": 1230,
+        "accuracy": 0.6853658536585366,
+        "brier": 0.20556996430013416,
+        "log_loss": 0.5977786521406572,
+        "delta_log_loss_ci95_vs_champion": [
+          -0.0005540803476986643,
+          0.0013303774031556833
+        ]
+      }
+    }
+  },
+  "game_intervals": {
+    "n": 1230,
+    "failed": 0,
+    "margin_80_coverage": 0.7845528455284553,
+    "total_80_coverage": 0.7943089430894309,
+    "nominal": 0.8
+  },
+  "player_intervals": {
+    "n": 26050,
+    "calibration_appearances": 25718,
+    "nominal": 0.8,
+    "coverage": {
+      "Pts": 0.8348560460652591,
+      "REB": 0.8655278310940498,
+      "AST": 0.8811516314779271,
+      "3PM": 0.9175815738963532,
+      "PRA": 0.8040690978886756
+    },
+    "mean_width": {
+      "Pts": 14.658065259117084,
+      "REB": 5.926591170825336,
+      "AST": 3.970426103646834,
+      "3PM": 2.6810095969289836,
+      "PRA": 19.140541266794628
+    },
+    "note": "Conditional on appearance; residuals clustered by projected points, not player-specific"
+  },
+  "note": "All folds previously researched historical data. No novel untouched holdout, and no automatic promotion. Confidence intervals resample game dates; not full season/serial dependency.",
+  "provenance": {
+    "workflow_run": "https://github.com/afkkkennn/AXIOM/actions/runs/44683654733",
+    "job_id": 136112739378
+  }
+}

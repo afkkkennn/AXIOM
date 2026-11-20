@@ -1,0 +1,36 @@
+{
+  "matched_games": 553,
+  "champion_test_games": 1230,
+  "market_eligible_rows": 554,
+  "unmapped_market_teams": 0,
+  "champion": {
+    "n": 553,
+    "accuracy": 0.650994575045208,
+    "brier": 0.2199516666049577,
+    "log_loss": 0.6298305649285743
+  },
+  "archived_market": {
+    "n": 553,
+    "accuracy": 0.6491862567811935,
+    "brier": 0.21519824857958453,
+    "log_loss": 0.6189783092149896
+  },
+  "delta_log_loss_ci95_champion_minus_market": [
+    -0.009289472521057742,
+    0.030120502237170856
+  ],
+  "source": {
+    "url": "https://raw.githubusercontent.com/aaryanshah607/nba-line-sheet/76a5e1b0e8e8dd7f6961ce2594c1ca19d698439e/nba_odds_clean.csv",
+    "git_blob": "c8876c2bb4fe2cff5e49a697522ac091caa5ff7c",
+    "sha256": "fe37302d1f6c6b12b619e1b4a507ad7c23df467d988f83df7a3e7e268ce6ee52"
+  },
+  "limitations": [
+    "Matched subset of already evaluated season",
+    "Market probabilities not independently timestamped or reconstructed from both sides",
+    "No Bet88 claim"
+  ],
+  "provenance": {
+    "workflow_run": "https://github.com/afkkkennn/AXIOM/actions/runs/44683942813",
+    "job_id": 136113681730
+  }
+}

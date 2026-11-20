@@ -35,3 +35,13 @@ The pinned SportsDataverse ESPN box score files cover season ending years 2020â€
 
 ### Verified alpha.6 benchmark
 [Full metrics](reports/alpha6_holdout.json) from [successful workflow](https://github.com/afkkkennn/AXIOM/actions/runs/44682920282): 8,291 games, 1,230 holdout, calibrated ensemble accuracy 68.54%, Brier 0.20543, log loss 0.59738. Opponent-adjusted player model tested on 26,050 appearances. Results are not a head-to-head comparison with the missing alpha.2 model. Candidate for prospective tracking, not a proven market edge. Historical odds analysis and point-in-time injury validation remain separate. See reports/validation_plan.md for promotion gates.
+
+## Alpha.7 operational research
+- [Team forecast ledger](tracking/predictions.csv) and [team performance](tracking/performance.json).
+- [Player forecast ledger](tracking/player_predictions.csv) and [player performance](tracking/player_performance.json); projections are appearance-conditional. Roster membership does not prove availability.
+- Scheduled workflows run every six hours subject to GitHub scheduling and source availability. The first team/player runs recorded 9 and 261 prospective forecasts respectively, with results pending at the time of deployment.
+- Joint empirical residual simulations and nonlinear challengers: [verified metrics](reports/alpha7_challengers.json). Alpha.6 calibrated ridge remains champion after retrospective comparisons. No new untouched season has been tested.
+- Lagged participation and minutes research: [verified results](reports/alpha7_rotation.json), not a replacement for a point-in-time injury report.
+- Matched market comparison: [verified metrics](reports/alpha7_matched_market.json), 553 matched games, market timestamps unverified; no claim of market superiority.
+- Timestamped official injury archive research (SportsDataverse transcription) selects T-90 snapshots and explicitly skips unsubmitted/unknown reports. Results must be verified before integrating injury effects into the champion.
+- Public inputs only; no private credentials. Repository visibility was public at deployment. No wagering/recommendation engine, no claim of guaranteed accuracy.

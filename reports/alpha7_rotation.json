@@ -1,0 +1,30 @@
+{
+  "train": 162425,
+  "calibration": 35321,
+  "test": 35023,
+  "baseline": {
+    "brier": 0.16340190750532788,
+    "log_loss": 0.4951279472271399,
+    "unconditional_minutes_mae": 6.6530337206978265
+  },
+  "learned": {
+    "brier": 0.1364993839949261,
+    "log_loss": 0.43229814376152614,
+    "unconditional_minutes_mae": 6.549101687398486
+  },
+  "candidate_appearance_coverage": 0.9818101332045556,
+  "observed_appearances": 24849,
+  "games_team_sides_evaluated": 2307,
+  "incomplete_team_sides_excluded": 3,
+  "limitations": [
+    "Candidate set from last ten team games at least five earlier games in current season",
+    "Appearance record is not verified pregame availability",
+    "Unseen returns/trades may be missed",
+    "No official injury snapshot used",
+    "Reuses historical 2025-26 holdout; not a fresh test"
+  ],
+  "provenance": {
+    "workflow_run": "https://github.com/afkkkennn/AXIOM/actions/runs/44683942813",
+    "job_id": 136113681235
+  }
+}

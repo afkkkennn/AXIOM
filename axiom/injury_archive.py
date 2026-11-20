@@ -33,9 +33,15 @@ def select(rows,tipoff,max_age_hours=36):
     return max(eligible,key=lambda r:r['report_time_utc']) if eligible else None
 def main():
     p=argparse.ArgumentParser();p.add_argument('--tipoff');p.add_argument('--out',default='reports/live/injury_index.json');args=p.parse_args()
-    r=requests.get(INDEX,timeout=(15,60));r.raise_for_status();rows=index_html(r.text)
-    if not rows:raise ValueError('No official PDF links returned; do not infer availability')
-    doc={'index_url':INDEX,'retrieved_at_utc':dt.datetime.now(dt.timezone.utc).isoformat(),'reports':rows,'note':'Report times parsed from official filenames; game-specific status and report completeness still require inspection. Archive link presence is not proof of historical retrieval time.'}
+    rows=[];attempts=[]
+    for url in [INDEX,'https://www.nba.com/players/injury-report']:
+        try:
+            r=requests.get(url,timeout=(15,60));r.raise_for_status();rows=index_html(r.text)
+            attempts.append({'url':url,'status':r.status_code,'links':len(rows)})
+            if rows:break
+        except requests.RequestException as e:attempts.append({'url':url,'error':str(e)})
+    if not rows:print('Official index inaccessible or empty; do not infer availability')
+    doc={'index_url':INDEX,'retrieved_at_utc':dt.datetime.now(dt.timezone.utc).isoformat(),'reports':rows,'attempts':attempts,'status':'indexed' if rows else 'blocked_or_empty','note':'Report times parsed from official filenames; game-specific status and report completeness still require inspection. Archive link presence is not proof of historical retrieval time.'}
     if args.tipoff:doc['selected']=select(rows,args.tipoff)
     out=Path(args.out);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(doc,indent=2));print(f'Indexed {len(rows)} official report links')
 if __name__=='__main__':main()

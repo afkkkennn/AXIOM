@@ -22,6 +22,7 @@ jobs:
       - run: python -m axiom.injury_archive
       - run: python -m axiom.results_feed
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: axiom-prospective-audit
           path: reports/live/

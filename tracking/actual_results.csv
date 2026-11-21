@@ -1,1 +1,10 @@
 game_id,home_score,away_score,source_url,verified_at_utc
+espn:401909305,111,97,https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909305,2026-11-21T10:55:28.466407+00:00
+espn:401909306,111,113,https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909306,2026-11-21T10:55:28.466407+00:00
+espn:401909307,128,119,https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909307,2026-11-21T10:55:28.466407+00:00
+espn:401909308,102,105,https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909308,2026-11-21T10:55:28.466407+00:00
+espn:401909309,94,98,https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909309,2026-11-21T10:55:28.466407+00:00
+espn:401909310,126,120,https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909310,2026-11-21T10:55:28.466407+00:00
+espn:401909311,101,111,https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909311,2026-11-21T10:55:28.466407+00:00
+espn:401909312,133,124,https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909312,2026-11-21T10:55:28.466407+00:00
+espn:401909313,106,104,https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909313,2026-11-21T10:55:28.466407+00:00

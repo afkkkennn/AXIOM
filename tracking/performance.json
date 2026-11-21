@@ -1,7 +1,17 @@
 {
-  "settled_forecasts": 0,
-  "unsettled_forecasts": 15,
-  "by_model": {},
+  "settled_forecasts": 9,
+  "unsettled_forecasts": 7,
+  "by_model": {
+    "alpha.6-calibrated-live": {
+      "forecast_count": 9,
+      "unique_games": 9,
+      "accuracy": 0.6666666666666666,
+      "brier": 0.18339426421674448,
+      "log_loss": 0.540324692722847,
+      "margin_mae": 7.46463391272842,
+      "total_mae": 19.82400371925798
+    }
+  },
   "paired_injury_comparison": {
     "matched_games": 0,
     "status": "awaiting paired actual results"

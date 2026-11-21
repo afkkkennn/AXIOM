@@ -6,7 +6,7 @@
   "by_stat": {},
   "note": "Not observed does not establish DNP; team final and published player data required",
   "player_data_source": {
-    "url": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-data/a89e033980909c1d13f5afe3d2632c5e25aa30d2/nba/player_box/parquet/player_box_2027.parquet",
+    "url": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-data/31403baa237b6ab08738636fc4c8922f210a57c3/nba/player_box/parquet/player_box_2027.parquet",
     "git_blob": "cce1947d09a03fa8f92a80da9d778f5b26eda649",
     "sha256": "1570eefbef738bf4ea265433304ab9e8cc363d624e06923a80990cb8e0782b81"
   }

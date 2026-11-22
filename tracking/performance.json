@@ -1,6 +1,6 @@
 {
   "settled_forecasts": 15,
-  "unsettled_forecasts": 7,
+  "unsettled_forecasts": 17,
   "by_model": {
     "alpha.6-calibrated-live": {
       "forecast_count": 15,

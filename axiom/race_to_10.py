@@ -69,11 +69,14 @@ def race(game):
         q1.append((i,x,h,a))
     if not q1:
         return {"status":"unverified","reason":"No first-quarter scoreboard data","url":url,"plays_count":len(p)}
-    # ESPN lists scoring plays chronologically; confirm monotone score updates.
-    for (_,_,h0,a0),(_,_,h1,a1) in zip(q1,q1[1:]):
-        if h1<h0 or a1<a0:
-            return {"status":"unverified","reason":"Nonmonotone score; play ordering not verified","url":url}
+    # Only the scoring sequence up to the first team reaching ten matters.
+    # Later post-review corrections cannot alter an already-resolved race.
+    prev_h,prev_a=0,0
     for _,x,h,a in q1:
+        if h<prev_h or a<prev_a:
+            return {"status":"unverified","reason":"Nonmonotone score BEFORE the race was decided","url":url,
+                    "previous_score":[prev_h,prev_a],"current_score":[h,a],"clock":str(x.get("clock"))}
+        prev_h,prev_a=h,a
         if h>=10 and a>=10:
             return {"status":"unverified","reason":"Both reached ten in the same score update","url":url}
         if h>=10 or a>=10:

@@ -1,6 +1,6 @@
 """Reconstruct the opening race to 10 from ESPN's chronological event-level plays.
 
-Defaults to Detroit's most recent 20 completed competitive games, including
+Defaults to a team's most recent 20 completed competitive games, including
 previous-season playoffs if fewer than 20 current regular-season games exist.
 Reports missing/ambiguous PBP separately, never as an inferred loss.
 """
@@ -10,7 +10,7 @@ import requests
 
 API="https://site.api.espn.com/apis/site/v2/sports/basketball/nba"
 FINAL={"STATUS_FINAL","STATUS_FINAL_OVERTIME"}
-TEAM_ID={"DET":"8"}
+TEAM_ID={"DET":"8","ATL":"1"}
 UTC=dt.timezone.utc
 
 def api(path,**params):
@@ -81,7 +81,7 @@ def race(game):
             return {"status":"unverified","reason":"Both reached ten in the same score update","url":url}
         if h>=10 or a>=10:
             winner=game["home"] if h>=10 else game["away"]
-            return {"status":"verified","first_to_10":winner,"det_won":winner=="DET",
+            return {"status":"verified","first_to_10":winner,"team_won":winner==game["team"],
                 "score_at_race_decision":f"{game['away']} {a} - {game['home']} {h}",
                 "quarter_clock":x.get("clock",{}).get("displayValue") if isinstance(x.get("clock"),dict) else str(x.get("clock", "")),
                 "event":x.get("text",""),"url":url,"q1_scored_events":len(q1),"plays_count":len(p)}
@@ -89,11 +89,12 @@ def race(game):
 
 def main():
     pa=argparse.ArgumentParser()
-    pa.add_argument("--team",default="DET",choices=["DET"])
+    pa.add_argument("--team",default="DET",choices=sorted(TEAM_ID))
     pa.add_argument("--count",type=int,default=20)
     pa.add_argument("--as-of-utc",default="2026-11-22T13:29:00+00:00")
-    pa.add_argument("--out",default="reports/race_to_10_det_last20.json")
+    pa.add_argument("--out",default=None)
     a=pa.parse_args()
+    if a.out is None:a.out=f"reports/race_to_10_{a.team.lower()}_last{a.count}.json"
     as_of=dt.datetime.fromisoformat(a.as_of_utc.replace("Z","+00:00"))
     if as_of.tzinfo is None:raise ValueError("as-of must contain timezone")
     all_games=[]
@@ -104,19 +105,20 @@ def main():
         if len({x["id"] for x in all_games if x["tipoff_utc"]<as_of})>=a.count:break
     unique={x["id"]:x for x in all_games if x["tipoff_utc"]<as_of}
     games=sorted(unique.values(),key=lambda x:x["tipoff_utc"],reverse=True)[:a.count]
+    for x in games:x["team"]=a.team
     if len(games)<a.count:raise ValueError(f"Only {len(games)} completed games found, expected {a.count}")
     records=[]
     for g in games:
         try:res=race(g)
         except requests.RequestException as ex:
             res={"status":"unverified","reason":f"ESPN fetch failed: {str(ex)[:160]}"}
-        record={**{k:v for k,v in g.items() if k!="schedule_url"},**res,
+        record={"team":a.team,**{k:v for k,v in g.items() if k!="schedule_url"},**res,
                 "tipoff_utc":g["tipoff_utc"].isoformat()}
         records.append(record)
         print(g["tipoff_utc"].date(),g["opponent"],g["location"],res.get("first_to_10", "N/A"),res.get("score_at_race_decision",""),res.get("reason",""))
         time.sleep(.15)
-    wins=sum(x.get("det_won",False) for x in records)
-    loss=sum(x.get("status")=="verified" and not x["det_won"] for x in records)
+    wins=sum(x.get("team_won",False) for x in records)
+    loss=sum(x.get("status")=="verified" and not x["team_won"] for x in records)
     unverified=sum(x["status"]!="verified" for x in records)
     report={"team":a.team,"as_of_utc":as_of.isoformat(),"window":len(records),
         "verified":len(records)-unverified,"race_to_10_wins":wins,"race_to_10_losses":loss,

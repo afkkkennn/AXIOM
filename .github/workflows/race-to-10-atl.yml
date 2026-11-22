@@ -1,0 +1,24 @@
+name: AXIOM Hawks race to 10 research
+on:
+  push:
+    paths:
+      - 'axiom/race_to_10.py'
+      - '.github/workflows/race-to-10-atl.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  atl-last-20:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install 'requests>=2.31'
+      - run: python -m axiom.race_to_10 --team ATL --count 20 --as-of-utc 2026-11-22T13:29:00+00:00
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atl-race-to-10-last20
+          path: reports/race_to_10_atl_last20.json

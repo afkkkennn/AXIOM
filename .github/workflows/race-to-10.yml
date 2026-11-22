@@ -1,0 +1,24 @@
+name: AXIOM race to 10 research
+on:
+  push:
+    paths:
+      - 'axiom/race_to_10.py'
+      - '.github/workflows/race-to-10.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  det-last-20:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests>=2.31
+      - run: python -m axiom.race_to_10
+      - uses: actions/upload-artifact@v4
+        with:
+          name: det-race-to-10-last20
+          path: reports/race_to_10_det_last20.json

@@ -1,15 +1,15 @@
 {
-  "settled_forecasts": 10,
-  "unsettled_forecasts": 12,
+  "settled_forecasts": 15,
+  "unsettled_forecasts": 7,
   "by_model": {
     "alpha.6-calibrated-live": {
-      "forecast_count": 10,
-      "unique_games": 10,
-      "accuracy": 0.7,
-      "brier": 0.1670460707819762,
-      "log_loss": 0.5015037884019268,
-      "margin_mae": 7.751146971451931,
-      "total_mae": 21.036853185231685
+      "forecast_count": 15,
+      "unique_games": 15,
+      "accuracy": 0.7333333333333333,
+      "brier": 0.19389086659649651,
+      "log_loss": 0.5820656871178541,
+      "margin_mae": 7.462731180974755,
+      "total_mae": 23.21425944972678
     }
   },
   "paired_injury_comparison": {

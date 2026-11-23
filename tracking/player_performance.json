@@ -1,34 +1,34 @@
 {
-  "registered": 933,
-  "observed_appearances": 306,
-  "not_observed": 134,
-  "pending": 493,
+  "registered": 990,
+  "observed_appearances": 455,
+  "not_observed": 186,
+  "pending": 349,
   "by_stat": {
     "Pts": {
-      "mae": 4.910062478413649,
-      "interval_coverage": 0.8431372549019608
+      "mae": 4.9098950070597365,
+      "interval_coverage": 0.8549450549450549
     },
     "REB": {
-      "mae": 1.9615783792425732,
-      "interval_coverage": 0.8496732026143791
+      "mae": 1.9084715027606678,
+      "interval_coverage": 0.8571428571428571
     },
     "AST": {
-      "mae": 1.3283045045606887,
-      "interval_coverage": 0.8758169934640523
+      "mae": 1.3808390723512045,
+      "interval_coverage": 0.8747252747252747
     },
     "3PM": {
-      "mae": 0.9693822969949557,
-      "interval_coverage": 0.9052287581699346
+      "mae": 0.9899139514079381,
+      "interval_coverage": 0.9010989010989011
     },
     "PRA": {
-      "mae": 6.281163401471877,
-      "interval_coverage": 0.8006535947712419
+      "mae": 6.264780231847646,
+      "interval_coverage": 0.8043956043956044
     }
   },
   "note": "Not observed does not establish DNP; team final and published player data required",
   "player_data_source": {
-    "url": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-data/a455343008f2da46df87753dc9318d8c9fdd49d5/nba/player_box/parquet/player_box_2027.parquet",
-    "git_blob": "cf54df934be8d7226dc47c4a16fb4c8ba2241364",
-    "sha256": "7c7366e5ce3771a1bb62d7066617c8bbe0de2413348f378f97fa3df35b1afeb0"
+    "url": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-data/2de7693a4518556df01b9552d3e2aa0af4795bf8/nba/player_box/parquet/player_box_2027.parquet",
+    "git_blob": "3f44dbac7270c33c75e77821fccd6cc02cff70ed",
+    "sha256": "b007bb08ffe5527b665fdb4f7ca244f0cea84b6fdd01165fbabc8bea07a0095d"
   }
 }

@@ -1,8 +1,8 @@
 {
-  "registered": 1228,
+  "registered": 1286,
   "observed_appearances": 672,
   "not_observed": 261,
-  "pending": 295,
+  "pending": 353,
   "by_stat": {
     "Pts": {
       "mae": 4.793306020562393,
@@ -27,7 +27,7 @@
   },
   "note": "Not observed does not establish DNP; team final and published player data required",
   "player_data_source": {
-    "url": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-data/290bb11eb7e549e1c16b492e1c8f9b1057807d58/nba/player_box/parquet/player_box_2027.parquet",
+    "url": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-data/4c8fafcc8154fd2fc8ac5e2bda8ea198933fe9b2/nba/player_box/parquet/player_box_2027.parquet",
     "git_blob": "2fac09033f24c67eeac345146965ba9d4e684356",
     "sha256": "a6ecbbf6a298581774de31e84f0fc388cd958f9eddc24c38c04039d08e3630f4"
   }
